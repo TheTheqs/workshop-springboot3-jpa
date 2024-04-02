@@ -3,6 +3,7 @@ package com.husnhus.test.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.husnhus.test.entities.pk.OrdeItemPK;
 
 import jakarta.persistence.EmbeddedId;
@@ -15,7 +16,7 @@ public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private OrdeItemPK id;
+	private OrdeItemPK id = new OrdeItemPK();
 	private Integer quantity;
 	private Double price;
 
@@ -31,6 +32,7 @@ public class OrderItem implements Serializable {
 		this.price = price;
 	}
 
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
